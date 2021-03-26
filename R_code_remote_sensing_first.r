@@ -1,6 +1,6 @@
 #Il mio primo codice in R per il telerilevamento!
 #install.packages("raster")
-
+#imposto la working directory per sistema windows
 setwd("C:/lab/")
 
 #richiamo la funzione che voglio usare, in questo caso dal pacchetto raster installato
@@ -80,5 +80,59 @@ plot(p224r63_2011$B3_sre, col=clr)
 
 clnir <- colorRampPalette(c("red","orange","yellow")) (100)
 plot(p224r63_2011$B4_sre, col=clnir)
+
+#visualizzo i dati plottando in RGB (schema per visualizzare le immagini per cui assegno max 3 bande per volta alle componenti red, green e blue)
+
+# Bande Landsat
+# B1: blu
+# B2: verde
+# B3: rosso
+# B4: infrarosso vicino
+# B5: infrarosso medio
+# B6: infrarosso termico
+# B7: infrarosso medio
+
+#visualizzo l'immagine tramite schema RGB in colori naturali
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+
+#visualizzo l'immagine tramite schema RGB in falsi colori
+#monto la banda 4 sulla componente red, la banda 3 sulla componente green, la banda 2 sulla componente blue
+#la vegetazione apparirà rossa poiché riflette molto nel NIR (infrarosso vicino - banda 4)
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+
+# r=3, g=4, b=2
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+
+# r=3, g=2, b=4
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+
+#multiframe 2x2 con i precedenti 4 plot
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+
+#salvo l'immagine in pdf
+pdf("il_mio_primo_pdf_con_R.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+dev.off()
+
+#plotto in RGB con uno stretch di tipo histogram, che evidenzia maggiormente le differenti componenti nell'immagine
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
+
+#confronto tra immagine a colori naturali, in falsi colori con stretch lineare e in falsi colori con stretch histogram
+par(mfrow=c(3,1))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
+
+
+
+
 
 

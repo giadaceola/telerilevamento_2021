@@ -131,8 +131,44 @@ plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 
+#faccio un confronto multitemporale, quindi tra l'immagine del 2011 e l'immagine del 1988
+#importo l'intera immagine satellitare (quindi tutte le bande) del 2011 e quella del 1988 (riferita sempre alla stessa area, definita dal path 224 e dalla row 63)
+#le associo ad un nome
+#setwd("C:/lab/")
+#library(raster)
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+p224r63_2011
+p224r63_1988 <- brick("p224r63_1988_masked.grd")
+p224r63_1988
 
+#plotto le singole bande dell'immagine del 1988
+plot(p224r63_1988)
 
+#plotto in RGB con r (componente red) =3 (banda 3), g=2, b=1
+#stretch lineare (per visualizzare tutta la gamma da 0 a 1 dei valori di riflettanza, anche nel caso di range di valori che non coprono tutti i valori da 0 a 1 di riflettanza)
+plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin")
+# r=4, g=3, b=2
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
 
+#confronto le due immagini sempre con plot in RGB con r=4, g=3, b=2, 2 righe 1 colonna
+par(mfrow=c(2,1))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+
+#confronto le due immagini (per vedere la variazione multitemporale), anche tra stretch lineare e stretch histogram
+# multiframe 2x2
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+#creo un pdf della variazione multitemporale
+pdf("multitemp.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+dev.off()
 
 

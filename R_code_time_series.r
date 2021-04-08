@@ -41,7 +41,7 @@ TGr <- stack(import)
 # plotto il file unico che ho creato (composto dai 4 lst)
 plot(TGr)
 
-# faccio un plot in cui associo lst del 2000 alla componente red, lst del 2005 alla componente green, lst del 2010 alla componente blue
+# faccio un plot RGB (di valori di temperatura) in cui associo lst del 2000 alla componente red, lst del 2005 alla componente green, lst del 2010 alla componente blue
 # la componente più visibile è quella a cui corrispondono valori di lst più alti nel tif associato a quella componente
 plotRGB(TGr, 1, 2, 3, stretch="Lin")
 

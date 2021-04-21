@@ -39,4 +39,3 @@ sunc <- unsuperClass(sun, nClasses=3)
 plot(sunc$map)
 
 
-

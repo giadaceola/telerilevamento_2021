@@ -15,7 +15,7 @@ so
 # visualizzo in RGB i livelli importati
 plotRGB(so, 1, 2, 3, stretch="lin")
 
-# faccio una Classificazione Non Supervisionata (Unsupervised Classification), ossia le classi non sono ancora definite, ma vengono scelti i training set direttamente dal software sulla base dei dati di riflettanza
+# faccio una Classificazione Non Supervisionata (Unsupervised Classification), ossia le classi non sono ancora definite, ma vengono scelti i training set casualmente e direttamente dal software sulla base dei dati di riflettanza
 # e associo la funzione ad un oggetto
 soc <- unsuperClass(so, nClasses=3)
 
@@ -37,5 +37,30 @@ sun <- brick("sun.png")
 # faccio una Unsupervised Classification con 3 classi
 sunc <- unsuperClass(sun, nClasses=3)
 plot(sunc$map)
+
+# Grand Canyon
+# https://landsat.visibleearth.nasa.gov/view.php?id=80948
+
+# importo l'immagine satellitare (le "" perché esco da R per andare a prenderla) e la associo a un oggetto
+gc <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
+# plotto in RGB
+plotRGB(gc, r=1, g=2, b=3, stretch="lin")
+# plotto in RGB ma con stretch di tipo histogram
+plotRGB(gc, r=1, g=2, b=3, stretch="hist")
+
+# faccio un modello di classificazione non supervisionata con 2 classi (discriminazione avviene sulla base della riflettanza)
+gcc2 <- unsuperClass(gc, nClasses=2)
+gcc2
+# plotto la mappa in uscita legata al modello creato
+plot(gcc2$map)
+# unsupervised classification con 4 classi
+gcc4 <- unsuperClass(gc, nClasses=4)
+plot(gcc4$map)
+
+
+
+
+
+
 
 

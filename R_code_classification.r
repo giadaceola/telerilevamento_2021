@@ -26,8 +26,6 @@ plot(soc$map)
 # faccio una Unsupervised Classification con 20 classi e visualizzo la mappa
 soc20 <- unsuperClass(so, nClasses=20)
 plot(soc20$map)
-# alternativamente posso usare la funzione set.seed
-set.seed(20)
 
 # Download e immagine da:
 # https://www.esa.int/ESA_Multimedia/Missions/Solar_Orbiter/(result_type)/images

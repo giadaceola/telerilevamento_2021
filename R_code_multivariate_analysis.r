@@ -25,5 +25,6 @@ plot(p224r63_2011$B1_sre, p224r63_2011$B2_sre, col="red", pch=19, cex=2)
 pairs(p224r63_2011)
 # nella parte alta della matrice sono indicati gli indici di correlazione (va da -1 a 1, in cui 1 è correlazione perfetta)
 # se sono molto correlate l'indice ha una dimensione dei caratteri più grande
+# se c'è grande correlazione, possimo usare l'analisi multivariata per ridurre il numero di bande nel nostro sistema conservando la stessa informazione 
 
 

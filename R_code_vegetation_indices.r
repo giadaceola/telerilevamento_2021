@@ -2,6 +2,10 @@
 
 library(raster)
 library(RStoolbox) # per calcolare gli indici di vegetazione
+# install.packages("rasterdiv")
+library(rasterdiv)  # per NDVI in tutto il mondo
+# install.packages("rasterVis")
+library(rasterVis)
 
 setwd("C:/lab/") # Windows
 # setwd("~/lab/") # Linux
@@ -64,6 +68,18 @@ vi1 <- spectralIndices(defor1, green=3, red=2, nir=1)
 plot(vi1, col=cl)
 vi2 <- spectralIndices(defor2, green=3, red=2, nir=1)
 plot(vi2, col=cl)
+
+# worldwide NDVI
+# plotto il database copNDVI
+plot(copNDVI)
+# tolgo la parte dell'acqua con la funzione cbind
+# con la funzione cbind e reclassify posso trasformare i pixel con i valori di 253, 254 e 255 (corrispondenti all'acqua) in non valori NA.
+# lo sovrascrivo su copNDVI
+copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
+plot(copNDVI)
+# faccio un levelplot, in cui sulle assi c'è un profilo indicante i valori medi per ogni riga/colonna
+levelplot(copNDVI)
+
 
 
 

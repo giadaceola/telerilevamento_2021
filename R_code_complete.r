@@ -40,6 +40,7 @@ plot(p224r63_2011)
 
 #cambio la scala di colori: definisco (creando un vettore) una serie con 3 caratteri (in questo caso colori), i quali possono assumere fino a 100 valori
 #associo la palette a un oggetto
+#plotto le bande, specificando con "col=cl" che come scala di colori voglio quella che ho appena creato
 cl<-colorRampPalette(c("black","grey","light grey")) (100)
 plot(p224r63_2011, col=cl)
 

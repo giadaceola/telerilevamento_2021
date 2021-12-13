@@ -27,14 +27,14 @@
 #imposto la working directory per sistema windows
 setwd("C:/lab/")
 
-#richiamo la funzione che voglio usare, in questo caso dal pacchetto raster installato
+#richiamo la funzione che voglio usare, in questo caso dal pacchetto "raster" installato precedentemente
 library(raster)
 
-#importo i dati raster (formano un pacchetto di bande) dentro R e li associo ad un oggetto
+#importo un'intera immagine satellitare (tutto il pacchetto di bande) dentro R e la associo ad un oggetto
 brick("p224r63_2011_masked.grd")
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
-#leggo i dati di questi raster e li visualizzo
+#leggo i dati di tutti i raster che compongono l'immagine e li visualizzo con la funzione "plot"
 p224r63_2011
 plot(p224r63_2011)
 

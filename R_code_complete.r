@@ -38,7 +38,8 @@ p224r63_2011 <- brick("p224r63_2011_masked.grd")
 p224r63_2011
 plot(p224r63_2011)
 
-#cambio la scala di colori con 3 caratteri (colori), i quali possono assumere 100 valori
+#cambio la scala di colori: definisco (creando un vettore) una serie con 3 caratteri (in questo caso colori), i quali possono assumere fino a 100 valori
+#associo la palette a un oggetto
 cl<-colorRampPalette(c("black","grey","light grey")) (100)
 plot(p224r63_2011, col=cl)
 

@@ -30,11 +30,11 @@ setwd("C:/lab/")
 #richiamo la funzione che voglio usare, in questo caso dal pacchetto raster installato
 library(raster)
 
-#importo i dati raster dentro R e lo associo ad un nome
+#importo i dati raster (formano un pacchetto di bande) dentro R e li associo ad un oggetto
 brick("p224r63_2011_masked.grd")
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
-#leggo i dati di questo raster e lo visualizzo
+#leggo i dati di questi raster e li visualizzo
 p224r63_2011
 plot(p224r63_2011)
 

@@ -78,6 +78,8 @@ par(mfrow=c(2,1))
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
 
+#se volessi indicare come primo numero quello delle colonne allora devo scrivere par(mfcol....)
+
 #plotto le prime quattro bande di Landsat in 4 righe, 1 colonna
 par(mfrow=c(4,1))
 plot(p224r63_2011$B1_sre)

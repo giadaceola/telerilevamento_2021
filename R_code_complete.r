@@ -120,7 +120,10 @@ plot(p224r63_2011$B4_sre, col=clnir)
 # B6: infrarosso termico
 # B7: infrarosso medio
 
-#visualizzo l'immagine tramite schema RGB in colori naturali
+#visualizzo l'immagine tramite schema RGB in colori naturali (r=3, g=2, b=1), che è anche il comando di default per la funzione plotRGB
+#l'argomento "stretch"serve per prendere i valori di riflettanza delle singole bande e tirarli al fine di evitare che ci sia uno schiacciamento verso una sola parte del colore
+#quindi si riescono a mostrare tutti i colori intermedi anche in un ristretto intervallo di valori
+#stretch di tipo lineare
 plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
 
 #visualizzo l'immagine tramite schema RGB in falsi colori

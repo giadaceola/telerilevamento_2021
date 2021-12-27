@@ -388,9 +388,9 @@ plot(p224r63_2011$B1_sre, p224r63_2011$B2_sre, col="red", pch=19, cex=2)
 
 # uso la funzione pairs per plottare tutte le correlazioni (a due a due) possibili tra tutte le variabili (in questo caso sono le nostre bande) in un dataset
 pairs(p224r63_2011)
-# nella parte alta della matrice sono indicati gli indici di correlazione (va da -1 a 1, in cui 1 è correlazione perfetta)
+# nella parte alta della matrice sono indicati gli indici di correlazione (va da -1 a 1)
 # se sono molto correlate l'indice ha una dimensione dei caratteri più grande
-# se c'è grande correlazione, possimo usare l'analisi multivariata per ridurre il numero di bande nel nostro sistema conservando la stessa informazione 
+# se c'è grande correlazione, possiamo usare l'analisi multivariata per ridurre il numero di bande nel nostro sistema conservando la stessa informazione 
 
 # Ricampionamento (resampling)
 # poiché la PCA è piuttosto pesante, creo un'immagine alleggerita con la funzione aggregate

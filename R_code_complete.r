@@ -213,6 +213,8 @@ dev.off()
 
 # install.packages("raster")
 # install.packages("rasterVis")
+# install.packages("rgdal")
+# library(rgdal)
 library(raster)
 library(rasterVis)
 

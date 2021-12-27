@@ -342,6 +342,8 @@ plot(albedores, col=cl)
 # R_code_knitr.r
 # uso la funzione knitr per creare un report, quindi pdf unico in cui inserisco più immagini e/o il codice R
 
+#install.packages("knitr")
+
 # imposto la working directory
 setwd("C:/lab/") # Windows
 # setwd("~/lab/") # Linux

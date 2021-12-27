@@ -355,7 +355,7 @@ setwd("C:/lab/") # Windows
 # richiamo la funzione knitr
 library(knitr)
 
-# la funzione stitch prende il codice di riferimento utilizzando il pacchetto knitr e genera il pdf come output, il quale viene salvato nella cartella da cui è stato preso il codice
+# la funzione stitch prende il codice di riferimento utilizzando il pacchetto knitr e genera il file output, il quale viene salvato nella cartella da cui è stato preso il codice
 stitch("R_code_greenland.r.txt", template=system.file("misc", "knitr-template.Rnw", package="knitr"))
 
 # ----------------------------------------------

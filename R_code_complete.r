@@ -351,11 +351,11 @@ setwd("C:/lab/") # Windows
 # setwd("~/lab/") # Linux
 # setwd("/Users/name/Desktop/lab/") # Mac
 
-# knitr prende un codice all'esterno di R, e all'interno di R genera un report (che viene salvato nella cartella del codice)
+# knitr prende un codice all'esterno di R e lo porta all'interno di R
 # richiamo la funzione knitr
 library(knitr)
 
-# la funzione stitch prende il codice di riferimento e, utilizzando il pacchetto knitr, genera il pdf come output
+# la funzione stitch prende il codice di riferimento utilizzando il pacchetto knitr e genera il pdf come output, il quale viene salvato nella cartella da cui è stato preso il codice
 stitch("R_code_greenland.r.txt", template=system.file("misc", "knitr-template.Rnw", package="knitr"))
 
 # ----------------------------------------------

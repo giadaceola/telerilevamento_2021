@@ -404,11 +404,12 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="lin")
 plotRGB(p224r63_2011res, r=4, g=3, b=2, stretch="lin")
 
 # PCA - Principal Components Analysis
-# utilizzo la funzione rasterPCA
+# utilizzo la funzione rasterPCA, che prende il pacchetto di dati e lo compatta in un numero minore di bande
 p224r63_2011res_pca <- rasterPCA(p224r63_2011res)
 # leggo le informazioni dell'oggetto
 p224r63_2011res_pca
 # guardo il sommario del modello, in cui vedo quanta varianza spiegano le varie bande (componenti)
+# uso il $ per legare il modello all'oggetto
 summary(p224r63_2011res_pca$model)
 # plotto la mappa generata dalla funzione rasterPCA
 plot(p224r63_2011res_pca$map)

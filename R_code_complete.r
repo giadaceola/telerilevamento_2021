@@ -612,8 +612,10 @@ setwd("C:/lab/") # Windows
 
 # carico il dataset, che in questo caso è un'immagine satellitare con tante bande, quindi uso la funzione brick
 defor1 <- brick("defor1.jpg")
+# faccio un plot in RGB
 plotRGB(defor1, r=1, g=2, b=3, stretch="Lin")
 # creo un'immagine singola da tre bande (con coordinate spaziali)
+# è necessaro richiamare le librerie ggplot2 e RStoolbox
 ggRGB(defor1, r=1, g=2, b=3, stretch="Lin")
 
 # stessa cosa per defor2

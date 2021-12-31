@@ -662,7 +662,7 @@ prop1
 # prop foresta: 0.8980814
 # prop agricoltura: 0.1019186
 
-# stessa cosa per la seconda immagine, che prò ha un numero totale di pixel diverso
+# stessa cosa per la seconda immagine, che però in questo caso ha un numero totale di pixel diverso
 s2 <- 342726
 prop2 <- freq(d2c$map) / s2
 prop2
@@ -674,8 +674,9 @@ prop2
 cover <- c("Forest","Agriculture")
 # seconda colonna
 percent_1992 <- c(89.80, 10.19)
+# terza colonna
 percent_2006 <- c(51.85, 48.14)
-# le unisco in un dataframe
+# le unisco in un dataframe che associo ad un oggetto
 percentages <- data.frame(cover, percent_1992, percent_2006)
 percentages
 

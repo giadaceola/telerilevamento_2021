@@ -532,7 +532,8 @@ plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 # calcolo l'indice di vegetazione DVI prima e dopo, e li associo ad un oggetto
 # trovo prima il nome delle variabili (bande)
 defor1
-# DVI=NIR-RED (differenza tra i valori dei pixel nella banda dell'infrarosso e i valori dei pixel nella banda del rosso).
+# DVI=NIR-RED (per ogni pixel, differenza tra i valori dei pixel nella banda dell'infrarosso e i valori dei pixel nella banda del rosso)
+# lego la banda all'immagine con il simbolo $
 dvi1 <- defor1$defor1.1 - defor1$defor1.2
 # visualizzo il DVI1
 plot(dvi1)
@@ -558,7 +559,7 @@ cld <- colorRampPalette(c('blue','white','red'))(100)
 plot(difdvi, col=cld)
 
 # calcolo l'NDVI, ossia il difference vegetation index, in cui il DVI è normalizzato con la somma di NIR e red
-# NDVI permette di confrontare immagine che hanno risoluzione radiometrica (numero di bit) differenti
+# NDVI permette di confrontare immagini che hanno risoluzione radiometrica (numero di bit) differente
 # NDVI ha sempre lo stesso range di valori (-1 < NDVI < 1), indipendentemente dalle immagini
 # NDVI= (NIR - RED) / (NIR+RED)
 # NDVI per il tempo 1
@@ -571,7 +572,7 @@ plot(ndvi2, col=cl)
 difndvi <- ndvi1 - ndvi2
 plot(difndvi, col=cld)
 
-# funzione "spectralIndeces" del pacchetto RStoolbox calcola una serie di indici di vegetazione
+# funzione "spectralIndeces" del pacchetto RStoolbox calcola una serie di indici spettrali
 vi1 <- spectralIndices(defor1, green=3, red=2, nir=1)
 plot(vi1, col=cl)
 vi2 <- spectralIndices(defor2, green=3, red=2, nir=1)

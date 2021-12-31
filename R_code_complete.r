@@ -687,8 +687,10 @@ percentages
 ggplot(percentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="white")
 ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(stat="identity", fill="white")
 # metto i due grafici in una finestra unica
+# prima di tutto associo i plot ad un oggetto
 p1 <- ggplot(percentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="white")
 p2 <- ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(stat="identity", fill="white")
+# serve la libreria gridExtra
 grid.arrange(p1,p2, nrow=1)
 
 # ----------------------------------------------

@@ -586,7 +586,7 @@ plot(copNDVI)
 # lo sovrascrivo su copNDVI
 copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
 plot(copNDVI)
-# faccio un levelplot, in cui sulle assi c'è un profilo indicante i valori medi per ogni riga/colonna
+# con la libreria rasterVis, faccio un levelplot in cui sulle assi c'è un profilo indicante i valori medi per ogni riga/colonna
 levelplot(copNDVI)
 
 # ----------------------------------------------

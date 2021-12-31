@@ -637,14 +637,14 @@ grid.arrange(p1, p2, nrow=2)
 # classificazione non supervisionata, con 2 classi
 d1c <- unsuperClass(defor1, nClasses=2)
 # la classe della foresta amazzonica è di colore verde (2), la parte agricola di colore bianco (1)
-# set.seed()
+# set.seed() indicando un numero nelle parentesi se voglio mantenere lo stesso risultato di volta in volta
 # plotto la mappa
 plot(d1c$map)
-# stessa cosa per defor2
+# stessa cosa per defor2, classificazione non supervisionata con 2 classi e plotto la mappa
 d2c <- unsuperClass(defor2, nClasses=2)
 plot(d2c$map)
 # la classe della foresta amazzonica è di colore bianco (1), la parte agricola di colore verde (2)
- # classificazione non supervisionata con 3 classi
+# classificazione non supervisionata con 3 classi
 d2c3 <- unsuperClass(defor2, nClasses=3)
 plot(d2c3$map)
 

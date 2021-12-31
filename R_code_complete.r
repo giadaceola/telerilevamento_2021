@@ -587,6 +587,7 @@ plot(copNDVI)
 copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
 plot(copNDVI)
 # con la libreria rasterVis, faccio un levelplot in cui sulle assi c'è un profilo indicante i valori medi per ogni riga/colonna
+# dà un'idea dell'estensione della biomassa vegetale nel mondo
 levelplot(copNDVI)
 
 # ----------------------------------------------

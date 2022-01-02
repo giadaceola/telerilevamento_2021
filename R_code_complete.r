@@ -731,32 +731,37 @@ red <- sent$sentinel.2
 
 # calcolo l'indice di vegetazione e lo plotto
 ndvi <- (nir-red) / (nir+red)
-cl <- colorRampPalette(c('black','white','red','magenta','green'))(100) # 
+cl <- colorRampPalette(c('black','white','red','magenta','green'))(100) 
 plot(ndvi,col=cl)
 
-# calcolo della variabilità con la deviazione standard
-# creo una finestra mobile di 3x3 pixel con dato centrale deviazione standard
+# calcolo della variabilità dell'immagine, in base alla deviazione standard
+# creo una finestra mobile di 3x3 pixel, in questo caso con dato centrale deviazione standard
+# per calcolare la variabilità uso la funzione focal, in cui definisco la moving window e la statistica che prendo in considerazione
 ndvisd3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+# definisco una palette e plotto l'immagine data dai dati di deviazione standard
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 plot(ndvisd3, col=clsd)
 
 # calcolo della variabilità con la media
 # creo una finestra mobile di 3x3 pixel con dato centrale media
 ndvimean3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+# plotto l'immagine data dai dati della media
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 plot(ndvimean3, col=clsd)
 
-# uso una finestra mobile di dimensioni 13x13 con dato centrale di dev. standard.
+# uso una finestra mobile di dimensioni 13x13 (deve comunque essere un numero dispari) con dato centrale di dev. standard.
 ndvisd13 <- focal(ndvi, w=matrix(1/169, nrow=13, ncol=13), fun=sd)
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 plot(ndvisd13, col=clsd)
-# 5x5
+# moving window di 5x5, sempre con dato centrale di deviazione standard
 ndvisd5 <- focal(ndvi, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 plot(ndvisd5, col=clsd)
 
-# prendo un sistema a multibande, ne calcolo la PCA e utilizzo solo la prima componente principale
+# prendo un sistema a multibande, ne calcolo la PCA e utilizzo solo la prima componente principale a cui applico una moving window con dati di deviazione standard
+# eseguo la PCA dell'immagine già importata, e associo ad un oggetto
 sentpca <- rasterPCA(sent)
+# plotto le mappe
 plot(sentpca$map)
 # guardo le informazioni di sentpca
 summary(sentpca$model)
@@ -764,20 +769,22 @@ summary(sentpca$model)
 
 # guardo come si chiamano le variabili
 sentpca$map
-# ci lego la prima variabile, ossia PC1, e lo associo ad un oggetto
+# lego la prima variabile, ossia PC1, alla mappa e lo associo ad un oggetto
 pc1 <- sentpca$map$PC1
 # uso la funzione focal per calcolare una moving window di 5x5 calcolando la sd
 pc1sd5 <- focal(pc1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+# plotto la mappa di deviazione standard con una palette che definisco
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 plot(pc1sd5, col=clsd)
 
-# funzione source richiama un pezzo di codice che abbiamo già creato
+# la funzione source richiama un pezzo di codice che abbiamo già creato
 source("source_test_lezione.r.txt")
 # pc1 <- sentpca$map$PC1
 # pc1sd7 <- focal(pc1, w=matrix(1/49, nrow=7, ncol=7), fun=sd)
 # plot(pc1sd7)
 
-# utilizzo nuovamente la funzione source per richiamare un pezzo di codice esterno
+# utilizzo nuovamente la funzione source per richiamare un pezzo di codice esterno, ma che si trova sempre all'interno della working directory che abbiamo impostato
+# richiamando la funzione source con il pezzo di codice si esegue direttamente il codice
 source("source_ggplot.r.txt")
 # pc1 <- sentpca$map$PC1
 # plot(pc1)
@@ -809,8 +816,11 @@ source("source_ggplot.r.txt")
 # grid.arrange(p0, p1, p2, p3, p4, p5, p6, p7, nrow = 2) # this needs griExtra
 
 
-# questo metodo permette di riscontrare discontinuità, ad esempio qualsiasi variabilità geomorfologica, ecologica (per individuare gli ecotoni)
+# plottare con ggplot permette di riscontrare discontinuità, ad esempio qualsiasi variabilità geomorfologica, ecologica (per individuare gli ecotoni)
 # le nuvole si vedono bene poichè presentano bassissima variabilità e quindi sono molto omogenee
+
+# visualizzo dei ggplot della mappa di deviazione standard creata prima
+# faccio tre grafici e li associo a tre oggetti
 # creo una finestra vuota con ggplot() e poi con + aggiungo le informazioni su geometria (estetiche incluse), palette, titolo
 p1 <- ggplot() +
 geom_raster(pc1sd5, mapping = aes(x = x, y = y, fill = layer)) +

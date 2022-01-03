@@ -869,10 +869,10 @@ plotRGB(defor2, r=1, g=2, b=3, stretch="hist")
 # creo una firma spettrale
 # uso la funzione "click" con l'immagine aperta
 click(defor2, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
-# creo valore identificativo per ogni punto con id=T, informazione spaziale con xy=T
-# cliccando sul pixel cell=T
+# creo valore identificativo per ogni punto scrivendo id=T, voglio l'informazione spaziale scrivendo xy=T, voglio il numero della cella scrivendo cell=T
 
-# clicco sull'immagine e R mi restituisce le informazioni riguardanti quel pixel, segnando con un pallino giallo numerato sulla mappa
+# clicco sull'immagine e R mi restituisce i valori di riflettanza riguardanti quel pixel nelle varie bande, segnandolo con un pallino giallo numerato sulla mappa
+# clicco un punto nella foresta e un punto nell'acqua
 
 # risultati:
 # foresta integra
@@ -884,25 +884,26 @@ click(defor2, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 # 1 411.5 100.5 270721       66       73      127
 
 # creo un dataframe
-# inizialmente devo creare uno storage
+
 # definisco le colonne del dataset
 band <- c(1, 2, 3)
 forest <- c(201, 17, 29)
 water <- c(66, 73, 127)
 
-# metto insieme le colonne per fare il dataframe
+# metto insieme le colonne per fare il dataframe, e lo associo ad un oggetto
 spectrals <- data.frame(band, forest, water)
 spectrals
 
-# plotto le firme spettrali
+# plotto le firme spettralin, necessaria la libreria ggplot2
 ggplot(spectrals, aes(x=band)) +
   geom_line(aes(y=forest), color="green") +
   geom_line(aes(y=water), color="blue") +
-  labs(x="band", y="reflectance")
-  
+  labs(x="band", y="reflectance")  
 # con "labs" si modificano i nomi degli assi  
 
 ### analisi multitemporale
+
+# carico l'immagine defor1 con tutte le bande e la plotto in RGB 
 defor1 <- brick("defor1.jpg")
 plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 
@@ -923,6 +924,7 @@ click(defor1, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 # firme spettrali di defor2
 plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 click(defor2, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
+# cerco di prendere i punti nella stessa zona in cui li ho presi su defor1
 
 #      x     y   cell defor2.1 defor2.2 defor2.3
 # 1 106.5 337.5 100487      186      189      162
@@ -935,7 +937,7 @@ click(defor2, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 #     x     y  cell defor2.1 defor2.2 defor2.3
 # 1 64.5 353.5 88973      171      172      158
 
-# creo il dataset
+# creo il dataset, considerando due pixel per ciascuna immagine
 band <- c(1,2,3)
 time1 <- c(200,2, 17)
 time1p2 <- c(201,3,18)
@@ -943,17 +945,21 @@ time2 <- c(186, 189, 162)
 time2p2 <- c(199,156,147)
 spectralst <- data.frame(band, time1, time2, time1p2, time2p2)
 
-# plotto le firme
+# plotto le firme spettrali
 ggplot(spectralst, aes(x=band)) +
  geom_line(aes(y=time1), color="red", linetype="dotted") +
  geom_line(aes(y=time1p2), color="red", linetype="dotted") +
  geom_line(aes(y=time2), color="gray", linetype="dotted") +
  geom_line(aes(y=time2p2), color="gray", linetype="dotted") +
  labs(x="band",y="reflectance")
+# linetype="dotted" crea una linea punteggiata
 
 # immagine da Earth Observatory
+# importo l'immagine
 eo <- brick("june_puzzler.jpg")
+# la plotto in RGB
 plotRGB(eo, 1, 2, 3, stretch="hist")
+# creo delle firme spettrali, quindi clicco su 3 punti nell'immagine e ricavo i dati di riflettanza nelle 3 bande per ciascun punto/pixel
 click(eo, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 
 #     x     y  cell june_puzzler.1 june_puzzler.2 june_puzzler.3
@@ -963,19 +969,19 @@ click(eo, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 #      x     y   cell june_puzzler.1 june_puzzler.2 june_puzzler.3
 # 1 502.5 129.5 252503             35             26             19
 
+# creo le colonne per il dataframe
 band <- c(1,2,3)
 stratum1 <- c(214, 179, 1)
 stratum2 <- c(49, 102, 10)
 stratum3 <- c(35, 26, 19)
-
+# unisco le colonne e creo il dataframe
 spectralsg <- data.frame(band, stratum1, stratum2, stratum3)
-
+# plotto le firme spettrali
 ggplot(spectralsg, aes(x=band)) +
  geom_line(aes(y=stratum1), color="yellow") +
  geom_line(aes(y=stratum2), color="green") +
  geom_line(aes(y=stratum3), color="blue") +
  labs(x="band",y="reflectance")
-
 
 
 

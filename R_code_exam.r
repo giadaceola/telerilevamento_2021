@@ -77,7 +77,7 @@ Importance of components:
 #Cumulative Proportion     0.9194382   0.99590545  0.999365129 1.000000e+00
 plot(dan2021r_pca$map)
 
-plotRGB(dan2021r_pca$map, r=1, g=2, b=3, stretch="lin", axes=TRUE, main="Mappa r=PC1, g=PC2, b=PC3")
+#plotRGB(dan2021r_pca$map, r=1, g=2, b=3, stretch="lin", axes=TRUE, main="Mappa r=PC1, g=PC2, b=PC3")
 
 ### Variabilità locale
 # NDVI 2021
@@ -132,12 +132,12 @@ dev.off()
 # b3= red
 # b4= nir
 
-clsi <- colorRampPalette(c('black','darkblue','red','yellow'))(100)
+#clsi <- colorRampPalette(c('black','darkblue','red','yellow'))(100)
 
 #RStoolbox
-spind <- spectralIndices(dan2021r, blue=1, green=2, red=3, nir=4)
-plot(spind, col=clsi)
-dev.off()
+#spind <- spectralIndices(dan2021r, blue=1, green=2, red=3, nir=4)
+#plot(spind, col=clsi)
+#dev.off()
 
 ### Classificazione non supervisionata
 #RStoolbox

@@ -68,7 +68,7 @@ plotRGB(dan2021r, 4,2,1, stretch="lin")
 pairs(dan2021r, main="Correlazioni tra variabili")
 
 ### Analisi delle componenti principali
-# RStoolbox
+#RStoolbox
 dan2021r_pca<-rasterPCA(dan2021r)
 dan2021r_pca
 summary(dan2021r_pca$model)
@@ -91,18 +91,18 @@ plot(ndvi21, main="NDVI 2021")
 # moving window 3x3 della deviazione standard di ndvi21
 #raster
 ndvi21sd3 <- focal(ndvi21, w=matrix(1/9, nrow=3, ncol=3), fun=sd)
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
-plot(ndvi21sd3, col=clsd, main="Deviazione standard di NDVI21")
+#clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+#plot(ndvi21sd3, col=clsd, main="Deviazione standard di NDVI21")
 
 # moving window 3x3 della deviazione standard nella PC1
-pc121 <- dan21r_pca$map$PC1
-pc121sd3 <- focal(pc121, w=matrix(1/9, nrow=3, ncol=3), fun=sd)
-plot(pc121sd3, col=clsd, main="Deviazione standard su PC1")
-dev.off()
+#pc121 <- dan21r_pca$map$PC1
+#pc121sd3 <- focal(pc121, w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+#plot(pc121sd3, col=clsd, main="Deviazione standard su PC1")
+#dev.off()
 
 #library(ggplot2)
 #library(viridis)
-ggplot() + geom_raster(pc121sd3, mapping = aes(x = x, y = y, fill = layer)) + scale_fill_viridis()
+ggplot() + geom_raster(ndvi21sd3, mapping = aes(x = x, y = y, fill = layer)) + scale_fill_viridis() + ggtitle("Deviazione standard di NDVI21")
 dev.off()
 
 ### Differenza NDVI

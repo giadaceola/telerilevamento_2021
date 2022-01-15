@@ -154,7 +154,7 @@ plotRGB(dan2021, 3,2,1, stretch="lin")
 dev.off()
 
 ### Calcolo della frequenza dei pixel di una certa classe
-freq(dan2021rc3$map)
+freq(dan2021rc5$map)
 #     value count
 #[1,]     1 10228
 #[2,]     2 19184

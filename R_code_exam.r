@@ -75,7 +75,9 @@ Importance of components:
 #Standard deviation     1484.2245787 428.03193377 91.044972644 3.900148e+01
 #Proportion of Variance    0.9194382   0.07646728  0.003459674 6.348711e-04
 #Cumulative Proportion     0.9194382   0.99590545  0.999365129 1.000000e+00
-plot(dan2021r_pca$map)
+
+plot(dan2021r_pca$map$PC1, main="PC1")
+plot(dan2021r_pca$map$PC1, dan2021r_pca$map$PC2, main="PC1 vs PC2")
 
 #plotRGB(dan2021r_pca$map, r=1, g=2, b=3, stretch="lin", axes=TRUE, main="Mappa r=PC1, g=PC2, b=PC3")
 

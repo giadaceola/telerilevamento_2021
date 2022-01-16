@@ -192,14 +192,16 @@ plotRGB(dan2018, 3,2,1, stretch="lin")
 click(dan2018, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 
 band<-c(1,2,3,4)
-pixel1_2021<-c(230, 427, 269, 3698)
-pixel2_2021<-c(927, 1312, 2072, 2802)
-pixel1_2018<-c(897, 772, 447, 3869)
-pixel2_2018<-c(1014, 1113, 682, 3956)
-water_2021<-c(365, 323, 258, 193)
-water_2018<-c(884, 607, 376, 221)
+pixel1_2021<-c(994, 1374, 1896, 2474)
+pixel2_2021<-c(245, 485, 284, 3802)
+pixel3_2021<-c(969, 1360, 1994, 2820)
+pixel4_2021<-c(522, 937, 610, 407)
+pixel1_2018<-c(1454, 1540, 2024, 2803)
+pixel2_2018<-c(849, 739, 450, 3525)
+pixel3_2018<-c(973, 942, 615, 3198)
+pixel4_2018<-c(1026, 1169, 659, 320)
 
-fs<-data.frame(band, pixel1_2021, pixel1_2018, pixel2_2021, pixel2_2018, water_2021, water_2018)
+fs<-data.frame(band, pixel1_2021, pixel1_2018, pixel2_2021, pixel2_2018, pixel3_2021, pixel3_2018, pixel4_2021, pixel4_2018)
 fs
 
 ggplot(fs, aes(x=band))+
@@ -207,13 +209,12 @@ geom_line(aes(y=pixel1_2021, colour="pixel1_2021")) +
 geom_line(aes(y=pixel1_2018, colour="pixel1_2018"))+
 geom_line(aes(y=pixel2_2021, colour="pixel2_2021")) +
 geom_line(aes(y=pixel2_2018, colour="pixel2_2018")) +
-geom_line(aes(y=water_2021, colour="water_2021"))+
-geom_line(aes(y=water_2018, colour="water_2018"))+
-scale_colour_manual("", breaks = c("pixel1_2021","pixel1_2018","pixel2_2021","pixel2_2018","water_2021","water_2018"),values = c("dark green","green","red","magenta","dark blue","blue")) +
+geom_line(aes(y=pixel3_2021, colour="pixel3_2021")) +
+geom_line(aes(y=pixel3_2018, colour="pixel3_2018"))+
+geom_line(aes(y=pixel4_2021, colour="pixel4_2021")) +
+geom_line(aes(y=pixel4_2018, colour="pixel4_2018"))+
+scale_colour_manual("", breaks = c("pixel1_2021","pixel1_2018","pixel2_2021","pixel2_2018","pixel3_2021","pixel3_2018","pixel4_2021","pixel4_2018"),values = c("orange","yellow","dark green","green","red","magenta","dark blue","blue")) +
 labs(x="band",y="reflectance", title="Firme spettrali")
-
-
-
 
 
 

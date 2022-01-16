@@ -79,7 +79,7 @@ Importance of components:
 plot(dan2021r_pca$map$PC1, main="PC1")
 plot(dan2021r_pca$map$PC1, dan2021r_pca$map$PC2, main="PC1 vs PC2")
 
-#plotRGB(dan2021r_pca$map, r=1, g=2, b=3, stretch="lin", axes=TRUE, main="Mappa r=PC1, g=PC2, b=PC3")
+plotRGB(dan2021r_pca$map, r=1, g=2, b=3, stretch="lin", axes=TRUE, main="Mappa r=PC1, g=PC2, b=PC3")
 
 ### Differenza NDVI
 
@@ -165,11 +165,11 @@ band<-c(1,2,3,4)
 pixel1_2021<-c(994, 1374, 1896, 2474)
 pixel2_2021<-c(245, 485, 284, 3802)
 pixel3_2021<-c(969, 1360, 1994, 2820)
-pixel4_2021<-c(522, 937, 610, 407)
+pixel4_2021<-c(531, 773, 1042, 2060)
 pixel1_2018<-c(1454, 1540, 2024, 2803)
 pixel2_2018<-c(849, 739, 450, 3525)
 pixel3_2018<-c(973, 942, 615, 3198)
-pixel4_2018<-c(1026, 1169, 659, 320)
+pixel4_2018<-c(888, 700, 512, 615)
 
 fs<-data.frame(band, pixel1_2021, pixel1_2018, pixel2_2021, pixel2_2018, pixel3_2021, pixel3_2018, pixel4_2021, pixel4_2018)
 fs
@@ -183,7 +183,7 @@ geom_line(aes(y=pixel3_2021, colour="pixel3_2021")) +
 geom_line(aes(y=pixel3_2018, colour="pixel3_2018"))+
 geom_line(aes(y=pixel4_2021, colour="pixel4_2021")) +
 geom_line(aes(y=pixel4_2018, colour="pixel4_2018"))+
-scale_colour_manual("", breaks = c("pixel1_2021","pixel1_2018","pixel2_2021","pixel2_2018","pixel3_2021","pixel3_2018","pixel4_2021","pixel4_2018"),values = c("orange","yellow","dark green","green","red","magenta","dark blue","blue")) +
+scale_colour_manual("", breaks = c("pixel1_2021","pixel1_2018","pixel2_2021","pixel2_2018","pixel3_2021","pixel3_2018","pixel4_2021","pixel4_2018"),values = c("orange","yellow","dark green","green","red","magenta","black","grey")) +
 labs(x="band",y="reflectance", title="Firme spettrali")
 
 

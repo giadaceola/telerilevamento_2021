@@ -107,20 +107,6 @@ cld <- colorRampPalette(c('red','white','green'))(100)
 plot(difndvi, col=cld, main="Differenza tra NDVI del 2021 e NDVI del 2018")
 dev.off()
 
-### Spectral indices
-
-# b1= blue
-# b2= green
-# b3= red
-# b4= nir
-
-clsi <- colorRampPalette(c('black','darkblue','red','yellow'))(100)
-
-RStoolbox
-spind <- spectralIndices(dan2021r, blue=1, green=2, red=3, nir=4)
-plot(spind, col=clsi)
-dev.off()
-
 ### Classificazione non supervisionata
 #RStoolbox
 dan2021rc3 <- unsuperClass(dan2021r, nClasses=3)

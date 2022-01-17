@@ -76,9 +76,9 @@ Importance of components:
 #Cumulative Proportion     0.9194382   0.99590545  0.999365129 1.000000e+00
 
 plot(dan2021r_pca$map$PC1, main="PC1")
-plot(dan2021r_pca$map$PC1, dan2021r_pca$map$PC2, main="PC1 vs PC2")
 
-plotRGB(dan2021r_pca$map, r=1, g=2, b=3, stretch="lin", axes=TRUE, main="Mappa r=PC1, g=PC2, b=PC3")
+#plot(dan2021r_pca$map$PC1, dan2021r_pca$map$PC2, main="PC1 vs PC2")
+#plotRGB(dan2021r_pca$map, r=1, g=2, b=3, stretch="lin", axes=TRUE, main="Mappa r=PC1, g=PC2, b=PC3")
 
 ### Differenza NDVI
 
@@ -88,9 +88,8 @@ red21<-dan2021r$T35TPK_20210731T085601_B04
 ndvi21 <- (nir21-red21) / (nir21+red21)
 plot(ndvi21, main="NDVI 2021")
 
-# calcolo prima anche NDVI 2018 su immagine ricampionata
-dan2018r <- aggregate(dan2018, fact=50)
 # NDVI 2018
+dan2018r <- aggregate(dan2018, fact=50)
 nir18<-dan2018r$T35TPK_20180717T085601_B08
 red18<-dan2018r$T35TPK_20180717T085601_B04
 ndvi18 <- (nir18-red18) / (nir18+red18)
@@ -129,6 +128,10 @@ sum21<-13755+11628+23017
 sum21
 prop21 <- freq(dan2021rc3$map)/sum21
 prop21
+#            value     count
+#[1,] 2.066116e-05 0.2841942
+#[2,] 4.132231e-05 0.2402479
+#[3,] 6.198347e-05 0.4755579
 
 freq(dan2018rc4$map)
 #     value count

@@ -112,46 +112,51 @@ dev.off()
 ### Classificazione non supervisionata
 #RStoolbox
 dan2021rc3 <- unsuperClass(dan2021r, nClasses=3)
-plot(dan2021rc3$map, main="Classificazione non supervisionata con 3 classi")
-dev.off()
-dan2021rc5 <- unsuperClass(dan2021r, nClasses=5)
-plot(dan2021rc5$map, main="Classificazione non supervisionata con 5 classi")
-dev.off()
-dan2021rc10 <- unsuperClass(dan2021r, nClasses=10)
-plot(dan2021rc10$map, main="Classificazione non supervisionata con 10 classi")
+plot(dan2021rc3$map, main="Classificazione non supervisionata 2021 con 3 classi")
 dev.off()
 
-par(mfrow=c(1,2))
-plot(dan2021rc10$map)
-plotRGB(dan2021, 3,2,1, stretch="lin")
+dan2018rc4 <- unsuperClass(dan2018r, nClasses=4)
+plot(dan2018rc4$map, main="Classificazione non supervisionata 2018 con 4 classi")
 dev.off()
+
 
 ### Calcolo della frequenza dei pixel di una certa classe
-freq(dan2021rc5$map)
+freq(dan2021rc3$map)
 #     value count
-#[1,]     1 10228
-#[2,]     2 19184
-#[3,]     3  3635
-#[4,]     4 10727
-#[5,]     5  4626
-sum21<-10228+19184+3635+10727+4626
+#[1,]     1 13755
+#[2,]     2 11628
+#[3,]     3 23017
+sum21<-13755+11628+23017
 sum21
-prop21 <- freq(dan2021rc5$map)/sum21
+prop21 <- freq(dan2021rc3$map)/sum21
 prop21
-#            value      count
-#[1,] 2.066116e-05 0.21132231
-#[2,] 4.132231e-05 0.39636364
-#[3,] 6.198347e-05 0.07510331
-#[4,] 8.264463e-05 0.22163223
-#[5,] 1.033058e-04 0.09557851
 
-# faccio un dataframe
-cover <- c("Agricoltura","Vegetazione","Sedimenti","Laguna","Mare")
-percent21<- c(22.16,21.13,9.55,7.51,39.63)
-percentages <- data.frame(cover,percent21)
+freq(dan2018rc4$map)
+#     value count
+#[1,]     1   376
+#[2,]     2 12631
+#[3,]     3 12322
+#[4,]     4 23071
+sum18<-376+12631+12322+23071
+sum18
+prop18 <- freq(dan2018rc4$map)/sum18
+prop18
+#            value       count
+#[1,] 2.066116e-05 0.007768595
+#[2,] 4.132231e-05 0.260971074
+#[3,] 6.198347e-05 0.254586777
+#[4,] 8.264463e-05 0.476673554
 
-ggplot(percentages, aes(x=cover, y=percent21, color=cover)) + geom_bar(stat="identity", fill="white")+ ggtitle("% copertura 2021")
-dev.off()
+# faccio dataframe
+cover <- c("Suolo","Vegetazione","Mare","Nuvole")
+percent21<- c(28.4,24,47.6,0)
+percent18<- c(26.1,25.5,47.7,0.7)
+percentages <- data.frame(cover,percent21,percent18)
+
+c21<-ggplot(percentages, aes(x=cover, y=percent21, color=cover)) + geom_bar(stat="identity", fill="white")+ ggtitle("% copertura 2021")
+c18<-ggplot(percentages, aes(x=cover, y=percent18, color=cover)) + geom_bar(stat="identity", fill="white")+ ggtitle("% copertura 2018")
+grid.arrange(c21, c18, nrow = 1)
+
 
 ### Firme spettrali
 #raster

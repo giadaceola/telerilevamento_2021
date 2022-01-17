@@ -7,12 +7,12 @@ library(RStoolbox)
 
 setwd("C:/lab/danubio")
 
-# creo le due liste di file contenenti le bande(con pattern "T35TPK_20180717T085601" e "T35TPK_20210731T085601")
+# creo le due liste di file contenenti le bande singole (con pattern comune "T35TPK_20180717T085601" e "T35TPK_20210731T085601" nel nome)
 primalist <- list.files(pattern="T35TPK_20180717T085601")
 primalist
 dopolist <- list.files(pattern="T35TPK_20210731T085601")
 dopolist
-# importo le bande delle due liste con un unico comando in cui si esegue la funzione raster su tutte le bande
+# importo le bande della lista con un unico comando in cui si esegue la funzione raster su tutte le bande
 primaimport <- lapply(primalist,raster)
 primaimport
 dopoimport <- lapply(dopolist,raster)
@@ -60,7 +60,7 @@ grid.arrange(p321, p421, p318, p418, nrow = 2)
 ### Differenza NDVI
 
 # NDVI 2021
-# ricampiono l'immagine 2021 con fattore 50
+# alleggerisco l'immagine ricampionando l'immagine 2021 con fattore 50
 dan2021r <- aggregate(dan2021, fact=50)
 # associo le bande agli oggetti nir e red, poi calcolo NDVI e lo plotto
 nir21<-dan2021r$T35TPK_20210731T085601_B08
@@ -69,7 +69,7 @@ ndvi21 <- (nir21-red21) / (nir21+red21)
 plot(ndvi21, main="NDVI 2021")
 
 # NDVI 2018
-# ricampiono l'immagine con fattore 50
+# ricampiono l'immagine 2018 con fattore 50
 dan2018r <- aggregate(dan2018, fact=50)
 # associo le bande agli oggetti nir e red
 nir18<-dan2018r$T35TPK_20180717T085601_B08
@@ -78,13 +78,13 @@ ndvi18 <- (nir18-red18) / (nir18+red18)
 plot(ndvi18, main="NDVI 2018")
 dev.off()
 
-# plotto ndvi 2018 e ndvi 2021 insieme
+# plotto ndvi 2018 e ndvi 2021 uno accanto all'altro sulla sessa riga
 par(mfrow=c(1,2))
 plot(ndvi18, main="NDVI 2018")
 plot(ndvi21, main="NDVI 2021")
 dev.off()
 
-# differenza tra ndvi 2021 e ndvi 2018
+# calcolo la differenza tra ndvi 2021 e ndvi 2018
 difndvi <- ndvi21 - ndvi18
 # definisco la palette e plotto la differenza di ndvi con questa palette
 cld <- colorRampPalette(c('red','white','green'))(100)
@@ -94,15 +94,18 @@ dev.off()
 
 ### Classificazione non supervisionata
 #RStoolbox
+# classificazione non supervisionata a 3 classi
 dan2021rc3 <- unsuperClass(dan2021r, nClasses=3)
+# plot della mappa del risultato della classificazione a 3 classi
 plot(dan2021rc3$map, main="Classificazione non supervisionata 2021 con 3 classi")
 dev.off()
-
+# classificazione non supervisionata a 4 classi
 dan2018rc4 <- unsuperClass(dan2018r, nClasses=4)
+# plot della mappa del risultato della classificazione a 4 classi
 plot(dan2018rc4$map, main="Classificazione non supervisionata 2018 con 4 classi")
 dev.off()
 
-# Calcolo della frequenza dei pixel delle varie classi
+# Calcolo della frequenza dei pixel delle varie classi risultanti classificazione del 2021
 freq(dan2021rc3$map)
 #     value count
 #[1,]     1 13755
@@ -111,7 +114,7 @@ freq(dan2021rc3$map)
 # sommo tutti i pixel di tutte le classi
 sum21<-13755+11628+23017
 sum21
-# divido la frequenza di ciascuna classe per la somma per trovare le proporzioni
+# divido la frequenza di ciascuna classe per la somma al fine di trovare le proporzioni
 prop21 <- freq(dan2021rc3$map)/sum21
 prop21
 #            value     count
@@ -119,7 +122,7 @@ prop21
 #[2,] 4.132231e-05 0.2402479
 #[3,] 6.198347e-05 0.4755579
 
-# faccio la stessa cosa per la classificazione del 2018
+# faccio la stessa cosa anche per la classificazione del 2018
 freq(dan2018rc4$map)
 #     value count
 #[1,]     1   376
@@ -136,13 +139,14 @@ prop18
 #[3,] 6.198347e-05 0.254586777
 #[4,] 8.264463e-05 0.476673554
 
-# costruisco un dataframe
+# creo i vettori delle categorie e dei valori percentuali delle proporzioni del 2021 e del 2018
 cover <- c("Suolo","Vegetazione","Mare","Nuvole")
 percent21<- c(28.4,24,47.6,0)
 percent18<- c(26.1,25.5,47.7,0.7)
+# costruisco un dataframe
 percentages <- data.frame(cover,percent21,percent18)
 
-# associo i grafici a un oggetto e li plotto uno accanto all'altro
+# associo i grafici ggplot della copertura a un oggetto e li plotto uno accanto all'altro
 c21<-ggplot(percentages, aes(x=cover, y=percent21, color=cover)) + geom_bar(stat="identity", fill="white")+ ggtitle("% copertura 2021")
 c18<-ggplot(percentages, aes(x=cover, y=percent18, color=cover)) + geom_bar(stat="identity", fill="white")+ ggtitle("% copertura 2018")
 grid.arrange(c21, c18, nrow = 1)
@@ -150,7 +154,7 @@ grid.arrange(c21, c18, nrow = 1)
 
 ### Firme spettrali
 #raster
-# uso la funzione click per ottenere i valori di riflettanza dei pixel su cui clicco
+# uso la funzione click per ottenere i valori di riflettanza nelle 4 bande dei pixel su cui clicco
 plotRGB(dan2021, 3,2,1, stretch="lin")
 click(dan2021, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 
@@ -172,7 +176,7 @@ pixel4_2018<-c(888, 700, 512, 615)
 fs<-data.frame(band, pixel1_2021, pixel1_2018, pixel2_2021, pixel2_2018, pixel3_2021, pixel3_2018, pixel4_2021, pixel4_2018)
 fs
 
-# plotto le firme spettrali definendo una scala colore manuale
+# plotto il dataframe con ggplot creando le firme spettrali e definendo una scala colore manuale
 ggplot(fs, aes(x=band))+
 geom_line(aes(y=pixel1_2021, colour="pixel1_2021")) +
 geom_line(aes(y=pixel1_2018, colour="pixel1_2018"))+

@@ -4,7 +4,6 @@ library(raster)
 library(ggplot2)
 library(gridExtra)
 library(RStoolbox)
-library(viridis)
 
 setwd("C:/lab/danubio")
 

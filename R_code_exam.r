@@ -75,7 +75,7 @@ pairs(dan2021r, main="Correlazioni tra variabili")
 # eseguo l'analisi delle componenti principali
 dan2021r_pca<-rasterPCA(dan2021r)
 dan2021r_pca
-# richiamo il summary del modello per leggere informazioni sulle componenti principali
+# richiamo il summary del modello (con $) per guardare le informazioni sulle componenti principali
 summary(dan2021r_pca$model)
 #Importance of components:
 #                             Comp.1       Comp.2       Comp.3       Comp.4

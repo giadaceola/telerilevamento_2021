@@ -66,8 +66,6 @@ plotRGB(dan2021, 4,2,1, stretch="lin")
 plotRGB(dan2021r, 4,2,1, stretch="lin")
 
 
-
-
 ### Analisi delle componenti principali
 
 # plotto le correlazioni tra tutte le bande

@@ -7,7 +7,7 @@ library(RStoolbox)
 
 setwd("C:/lab/danubio")
 
-# creo le due liste di file contenenti le bande(con nome comune "T35TPK_20180717T085601" e "T35TPK_20210731T085601")
+# creo le due liste di file contenenti le bande(con pattern "T35TPK_20180717T085601" e "T35TPK_20210731T085601")
 primalist <- list.files(pattern="T35TPK_20180717T085601")
 primalist
 dopolist <- list.files(pattern="T35TPK_20210731T085601")

@@ -46,7 +46,7 @@ plot(dan2018$T35TPK_20180717T085601_B03, col=clg, main="Banda verde")
 plot(dan2018$T35TPK_20180717T085601_B04, col=clr, main="Banda rosso")
 plot(dan2018$T35TPK_20180717T085601_B08, col=clnir, main="Banda nir")
 
-# plot dei due anni in colori naturali (3,2,1) e 4,2,1
+# plot di entrambe le immagini a colori naturali (3,2,1) e r=4, g=2, b=1
 #library(ggplot2)
 #library(gridExtra)
 #library(RStoolbox)

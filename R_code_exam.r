@@ -65,11 +65,14 @@ par(mfrow=c(2,1))
 plotRGB(dan2021, 4,2,1, stretch="lin")
 plotRGB(dan2021r, 4,2,1, stretch="lin")
 
-# plotto le correlazioni tra tutte le bande
-pairs(dan2021r, main="Correlazioni tra variabili")
+
 
 
 ### Analisi delle componenti principali
+
+# plotto le correlazioni tra tutte le bande
+pairs(dan2021r, main="Correlazioni tra variabili")
+
 #RStoolbox
 # eseguo l'analisi delle componenti principali
 dan2021r_pca<-rasterPCA(dan2021r)

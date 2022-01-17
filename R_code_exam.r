@@ -56,40 +56,12 @@ p318<-ggRGB(dan2018, 3,2,1, stretch="lin")
 p418<-ggRGB(dan2018, 4,2,1, stretch="lin")
 grid.arrange(p321, p421, p318, p418, nrow = 2)
 
-# ricampiono l'immagine 2021 con fattore 50
-dan2021r <- aggregate(dan2021, fact=50)
-plot(dan2021r)
-
-# confronto tra l'immagine originale e l'immagine ricampionata
-par(mfrow=c(2,1))
-plotRGB(dan2021, 4,2,1, stretch="lin")
-plotRGB(dan2021r, 4,2,1, stretch="lin")
-
-
-### Analisi delle componenti principali
-
-# plotto le correlazioni tra tutte le bande
-pairs(dan2021r, main="Correlazioni tra variabili")
-
-#RStoolbox
-# eseguo l'analisi delle componenti principali
-dan2021r_pca<-rasterPCA(dan2021r)
-dan2021r_pca
-# richiamo il summary del modello (con $) per guardare le informazioni sulle componenti principali
-summary(dan2021r_pca$model)
-#Importance of components:
-#                             Comp.1       Comp.2       Comp.3       Comp.4
-#Standard deviation     1484.2245787 428.03193377 91.044972644 3.900148e+01
-#Proportion of Variance    0.9194382   0.07646728  0.003459674 6.348711e-04
-#Cumulative Proportion     0.9194382   0.99590545  0.999365129 1.000000e+00
-
-# plotto solo la prima componente principale
-plot(dan2021r_pca$map$PC1, main="PC1")
-
 
 ### Differenza NDVI
 
 # NDVI 2021
+# ricampiono l'immagine 2021 con fattore 50
+dan2021r <- aggregate(dan2021, fact=50)
 # associo le bande agli oggetti nir e red, poi calcolo NDVI e lo plotto
 nir21<-dan2021r$T35TPK_20210731T085601_B08
 red21<-dan2021r$T35TPK_20210731T085601_B04
@@ -97,7 +69,9 @@ ndvi21 <- (nir21-red21) / (nir21+red21)
 plot(ndvi21, main="NDVI 2021")
 
 # NDVI 2018
+# ricampiono l'immagine con fattore 50
 dan2018r <- aggregate(dan2018, fact=50)
+# associo le bande agli oggetti nir e red
 nir18<-dan2018r$T35TPK_20180717T085601_B08
 red18<-dan2018r$T35TPK_20180717T085601_B04
 ndvi18 <- (nir18-red18) / (nir18+red18)
